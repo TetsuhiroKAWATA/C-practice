@@ -47,5 +47,20 @@ int main()
 
     cout << i8 << " " << i10 << " " << i16 << "\n" << ff << " "  << fe << " " << fee << "\n";
 
+    //使わないだろうけど文字リテラル
+    //分からなくなりがちだけど、intに入れる文字コード
+    int riteraru;
+    riteraru = 'A';//65を入れているのと同義
+    cout << riteraru << "\n";
+
+    //C言語ではchar配列とstring(#include <string>が必要)で文字列を表現できる
+    char testChar[10] = "hmhm";
+    string testString = "hmhmhm";
+    cout << testChar << testString << "\n";
+
+    strcpy_s(testChar, "書き換え");//strcpyだとエラー吐かれました
+    testString = "書き換えよう";
+    cout << testChar << testString << "\n";
+
     return 0;
 }
