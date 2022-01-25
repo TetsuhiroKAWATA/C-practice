@@ -2,10 +2,34 @@
 //
 
 #include <iostream>
+#include <string>
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    cout << "double =" << sizeof(double) << "\n";
+    cout << "long double =" << sizeof(long double) << "\n";
+
+    const int fixed = 10000;
+    //fixed = 1;
+    //上記はエラーになる(constがついてるから)
+    //似たようなのが#define
+
+    char numbertest = 65;
+    char texttest = '65';//ちなみに、char型は-128から127まで扱えるのでこれでもバグったりはしない。
+    char alpha = 'A';
+    cout << numbertest << texttest << alpha << "\n";
+
+    string atama = "前半";
+    string shippo = "後半";
+    string renketu = atama + shippo;
+    char Cstyle[80];
+    strcpy_s(Cstyle, renketu.c_str());
+
+    cout << atama << "/" << shippo << "/" << renketu << "/" << Cstyle << "\n";
+
+    char Auto [] = "123456";
+    cout << Auto << "\n";
 }
 
 // プログラムの実行: Ctrl + F5 または [デバッグ] > [デバッグなしで開始] メニュー
