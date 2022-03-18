@@ -1,51 +1,50 @@
-﻿// 9.Class_2.cpp : このファイルには 'main' 関数が含まれています。プログラム実行の開始と終了がそこで行われます。
+﻿// 10.Class_3.cpp : このファイルには 'main' 関数が含まれています。プログラム実行の開始と終了がそこで行われます。
 //
 
 #include <iostream>
 
-class Acls {
+class XYset {
+protected:
+    int x, y;
 public:
-    int a;
-
-    Acls() { a = 0; }
-    virtual void disp();
+    XYset() { x = y = 0; }
+    XYset(int n1, int n2) { x = n1; y = n2; }
+    virtual void area() = 0;
 };
 
-class Bcls : public Acls{
+class Triangle : public XYset {
 public:
-    int b;
-
-    Bcls() :Acls() { b = 0; };
-    void disp();
+    Triangle() : XYset() { ; }//Triangleのコンストラクタ
+    Triangle(int n1, int n2) : XYset(n1, n2) { ; }//引数二つの場合のコンストラクタ
+    void area() { std::cout << "三角形の面積は～？：" << x * y / 2 << '\n'; }
 };
 
-void Acls::disp() {
-    std::cout << "Aclsのa=" << a << "\n";
-}
-
-void Bcls::disp() {
-    std::cout << "Bclsのb=" << b << "\n";
-}
+class Square :public XYset {
+public:
+    Square() :XYset() { ; }
+    Square(int n1, int n2): XYset(n1, n2) { ; }
+    void area() { std::cout << "四角形の面積は～？：" << x * y << '\n'; }
+};
 
 int main()
 {
-    Acls* test[10];
-
-    Acls* aa;
-    aa = new Acls;
-
-    Bcls* bb;
-    bb = new Bcls;
-
-    test[0] = aa;
-    test[1] = bb;
-
-    test[0]->disp();
-    test[1]->disp();
-    //やってみた。無理だった。Visual studio の仕様かな？
-    //解決。派生クラスにしてなかっただけだった
-
     std::cout << "Hello World!\n";
+
+    //XYset a;
+    Triangle* t;
+    t = new Triangle(20, 30);
+    Square* s;
+    s = new Square(20, 30);
+    XYset* p;//ポインタはオブジェクトを確保する者ではないので、ポインタの宣言は可能
+
+    t->area();
+    s->area();
+
+    p = t;
+    p->area();
+
+    p = s;
+    p->area();
 }
 
 // プログラムの実行: Ctrl + F5 または [デバッグ] > [デバッグなしで開始] メニュー
