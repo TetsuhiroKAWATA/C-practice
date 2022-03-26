@@ -15,3 +15,7 @@ void Data::show()
 {
 	std::cout << Name << ':' << Num << '\n';
 }
+
+void Data::appendNum(int x) {
+
+}

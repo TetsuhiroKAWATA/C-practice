@@ -7,23 +7,28 @@ void makeClass(int* fill, Memo* memo[]);
 
 int main()
 {
+    using std::string;
+    using std::cout;
+    using std::cin;
+
     const int FNum = 20;
-    std::string Command;
-    std::string dataName, tmp;
+    string Command;
+    string dataName, tmp;
     int dataNum;
     int fill = 0;
     int* filler = &fill;
     Memo* memo[FNum];
 
     //メモ開始処理
-    std::cout << "メモ開始" << '\n';
-    std::cout << "作成可能な項目数は" << FNum << "個です\n";
+    cout << "メモ開始" << '\n';
+    cout << "作成可能な項目数は" << FNum << "個です\n";
     makeClass(filler, memo);
     fill++;
+    cout << "Cshowでヘルプを表示" << '\n';
     
     do {
-        std::cout << "コマンドを入力してください" << '\n';
-        std::cin >> Command;
+        cout << "コマンドを入力してください" << '\n';
+        cin >> Command;
         if (Command == "fin") {
             break;
         }
@@ -32,35 +37,48 @@ int main()
             fill++;
         }
         else if (Command == "set") {
-            std::cout << "どの項目にセットしますか？\n";
+            cout << "どの項目にセットしますか？ 数字を入力してください\n";
             for (int i = 0; i < fill; i++) {
-                std::cout << i << ':' << memo[i]->putObjName() << '\n';
+                cout << i << ':' << memo[i]->putObjName() << '\n';
             }
-            std::cin >> Command;
-            std::cout << "データ名を入力:";
-            std::cin >> dataName;
-            std::cout << "個数を入力:";
-            std::cin >> dataNum;//警告！この入力に文字を入れるとバグが発生する。
-
-            memo[atoi(Command.c_str())]->setData(dataName, dataNum);
+            cin >> Command;
+            cout << "データ名を入力:";
+            cin >> dataName;
+            cout << "個数を入力:";
+            cin >> tmp;
+            if (!(std::all_of(tmp.cbegin(), tmp.cend(), isdigit))) {
+                cout << "数字を入れてくだしあ。\n";
+            }
+            else {
+                dataNum = atoi(tmp.c_str());
+                memo[atoi(Command.c_str())]->setData(dataName, dataNum);
+            }
         }
         else if (Command == "show") {
             for (int i = 0; i < fill; i++) {
-                std::cout << "項目" << i << ":名前" << memo[i]->putObjName() << '\n';
+                cout << "項目" << i << "=名前:" << memo[i]->putObjName() << '\n';
                 memo[i]->showData();
             }
         }
-
+        else if (Command == "Cshow") {
+            cout << "new で新しい項目を追加\n";
+            cout << "set で任意の項目にデータを追加\n";
+            cout << "show で全ての保存データを列挙\n";
+            cout << "fin でプログラムを終了\n\n";
+        }
+        else {
+            cout << "正しい値を入力してください。コマンドの確認にはCshowを入力してください\n";
+        }
     } while (1);
 
     //最後の出力処理
     for (int i = 0; i < fill; i++) {
         memo[i]->outPut();
-        std::cout << "出したのはこれ" << i;
+        cout << "出したのはこれ" << i;
 
         delete memo[i];
     }
-    std::cout << "内容を出力しました。終了します。" << '\n';
+    cout << "内容を出力しました。終了します。" << '\n';
     return 0;
 }
 
