@@ -4,7 +4,7 @@ Memo::Memo()//コンストラクタ
 {
 	objName = "";
 	DNum = 0;
-
+	fileName = "out.txt";
 }
 
 Memo::~Memo()//デストラクタ
@@ -21,9 +21,24 @@ void Memo::setObjName(std::string Name)
 	std::cout << "クラスが作成できました。" << Name << '\n';
 }
 
-void Memo::outPut()
+int Memo::outPut()
 {
-	std::cout << "出力できたことにしてください\n";
+	std::ofstream fout;
+
+	fout.open(fileName, std::ios_base::app);
+	if (fout.fail()) {
+		std::cout << "ファイルが開けませんでした\n";
+		return 1;
+	}
+
+	fout << objName << '\n';
+
+	for (int i = 0; i < DNum; i++) {
+		fout << data[i]->getName() << ':' << data[i]->getNum() << '\n';
+	}
+	fout << '\n';
+
+	fout.close();
 }
 
 std::string Memo::putObjName()
@@ -52,4 +67,5 @@ void Memo::showData()
 	for (int i = 0; i < DNum; i++) {
 		data[i]->show();
 	}
+	std::cout << '\n';
 }

@@ -52,6 +52,7 @@ int main()
             else {
                 dataNum = atoi(tmp.c_str());
                 memo[atoi(Command.c_str())]->setData(dataName, dataNum);
+                cout << '\n';
             }
         }
         else if (Command == "show") {
@@ -72,6 +73,10 @@ int main()
     } while (1);
 
     //最後の出力処理
+    std::ofstream fout;
+    fout.open("out.txt", std::ios_base::trunc);
+    fout.close();
+
     for (int i = 0; i < fill; i++) {
         memo[i]->outPut();
         //cout << "出したのはこれ" << i;

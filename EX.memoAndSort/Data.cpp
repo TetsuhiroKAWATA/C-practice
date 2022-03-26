@@ -14,7 +14,7 @@ Data::~Data()
 
 void Data::show()
 {
-	std::cout << Name << ':' << Num << '\n';
+	std::cout << "E" << Name << ':' << Num << '\n';
 }
 
 void Data::appendNum(int x)
@@ -27,4 +27,9 @@ void Data::appendNum(int x)
 std::string Data::getName()
 {
 	return Name;
+}
+
+std::string Data::getNum()
+{
+	return Num;
 }

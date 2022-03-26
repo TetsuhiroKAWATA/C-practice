@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <cctype>
 #include <algorithm>
+#include <fstream>
 
 class Data
 {
@@ -16,5 +17,6 @@ public:
 	void show();
 	void appendNum(int x);
 	std::string getName();
+	std::string getNum();
 	~Data();
 };
