@@ -74,7 +74,7 @@ int main()
     //最後の出力処理
     for (int i = 0; i < fill; i++) {
         memo[i]->outPut();
-        cout << "出したのはこれ" << i;
+        //cout << "出したのはこれ" << i;
 
         delete memo[i];
     }

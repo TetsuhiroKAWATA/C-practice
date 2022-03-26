@@ -3,7 +3,8 @@
 Data::Data(std::string dataName, int dataNum)
 {
 	Name = dataName;
-	Num = dataNum;
+	n = dataNum;
+	Num = std::to_string(n);
 }
 
 Data::~Data()
@@ -16,6 +17,14 @@ void Data::show()
 	std::cout << Name << ':' << Num << '\n';
 }
 
-void Data::appendNum(int x) {
+void Data::appendNum(int x)
+{
+	std::string tmp = std::to_string(x);
+	Num += '+';
+	Num += tmp;
+}
 
+std::string Data::getName()
+{
+	return Name;
 }
